@@ -15,3 +15,14 @@ exports.register = async (req, res) => {
     console.log(err);
   }
 };
+
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findUserByEmail(email);
+
+  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
+
+  res.json({ token });
+};

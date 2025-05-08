@@ -7,3 +7,10 @@ exports.createUser = async (full_name, email, password, mobile) => {
   );
   return result;
 };
+
+exports.findUserByEmail = async (email) => {
+  const [result] = await pool.execute(`select * from user where email=?`, [
+    email,
+  ]);
+  return result;
+};

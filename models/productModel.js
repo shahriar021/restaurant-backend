@@ -5,6 +5,5 @@ exports.createProducts = async (pName, price) => {
     "insert into product (pName,price) value(?,?)",
     [pName, price]
   );
-  console.log([result]);
   return result;
 };
